@@ -14,10 +14,19 @@
                     <p>It is logged!</p>
                 </div>
                 <div class="">
-
+                    <button id="clicker" style="padding: 5rem; border-radius: 5rem;" >Click!</button>
+                    <p id="clicker_display"></p>
                 </div>
             </div>
         </main>
         
     </body>
+    <script>
+        document.getElementById('clicker').addEventListener('click', function() {
+            // Add your click event logic here
+            let clicker_display = document.getElementById('clicker_display');
+            let clicker_count = parseInt(clicker_display.innerText) || 0;
+            clicker_count++;
+        });
+    </script>
 </html>
