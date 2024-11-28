@@ -6,16 +6,19 @@
 </head>
     <body>
 
-        <main>
-            <div class="" style="display: flex; flex-direction: column;">
+        <main style="width: 100%;">
+            <div class="" style="display: flex; flex-direction: column; width: 100%; text-align: center;">
                 <div class="" style="display: flex; flex-direction: column;">
                     <h1 class="fTitle" style="font-weight: bold;">Welcome to the Global Clicker!</h1>
-                    <p>This is a world wide fun app where anyone can click the clicker!</p>
-                    <p>It is logged!</p>
+                    <p>This is a world wide fun app where anyone can click the clicker!<br><p>It is logged!</p></p>
+                    
                 </div>
-                <div class="">
-                    <button id="clicker" style="padding: 5rem; border-radius: 5rem;" >Click!</button>
-                    <p id="clicker_display"></p>
+                <div class="" style="display: flex; flex-direction: row; justify-content: center;">
+                    <div style="display: flex; justify-content: space-between; width: 100%;">
+                        <p id="clicker_display" style="font-size: 5rem;">0</p>
+                        <button id="clicker" style="padding: 5rem; border-radius: 100%; cursor: pointer;" >Click!</button>
+                        <p id="clicker_display2" style="font-size: 5rem;">0</p>
+                    </div>
                 </div>
             </div>
         </main>
@@ -25,8 +28,13 @@
         document.getElementById('clicker').addEventListener('click', function() {
             // Add your click event logic here
             let clicker_display = document.getElementById('clicker_display');
+            let clicker_display2 = document.getElementById('clicker_display2');
             let clicker_count = parseInt(clicker_display.innerText) || 0;
+            let clicker_count2 = parseInt(clicker_display2.innerText) || 0;
             clicker_count++;
+            clicker_count2++;
+            clicker_display.innerText = clicker_count;
+            clicker_display2.innerText = clicker_count2;
         });
     </script>
 </html>
