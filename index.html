@@ -3,21 +3,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Global Clicker</title>
+    <link rel="stylesheet" href="main.css">
 </head>
     <body>
 
-        <main style="width: 100%;">
-            <div class="" style="display: flex; flex-direction: column; width: 100%; text-align: center;">
-                <div class="" style="display: flex; flex-direction: column;">
-                    <h1 class="fTitle" style="font-weight: bold;">Welcome to the Global Clicker!</h1>
-                    <p>This is a world wide fun app where anyone can click the clicker!<br><p>It is logged!</p></p>
-                    
+        <main style="width: 100%; height: 100vh; display: flex; align-items: center; justify-content: center;">
+            <div class="" style="padding: 2rem; display: flex; flex-direction: column; width: 100%; text-align: center;">
+                <div class="" style="display: flex; flex-direction: column; line-height: 2px; margin-bottom: 4.5rem;">
+                    <h1 class="fTitle" style="font-weight: bold;">Welcome to the Fun Clicker!</h1>
+                    <p>This app was created with <span style="font-weight: bold;">RAW</span> HTML, CSS and JavaScript.</p>
+                    <p>This is a clicking app. Everytime you click, it's saved to your local storage!</p>
+                    <p>Have fun with clicking! Take time and reach the top of the leaderboard. This is a global competition.    </p>
+                    <p>Start by clicking the clicker in the center of the page!</p>
                 </div>
-                <div class="" style="display: flex; flex-direction: row; justify-content: center;">
-                    <div style="display: flex; justify-content: space-between; width: 100%;">
+                <div class="" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center    ;">
+                    <div style="display: flex; justify-content: space-between; width: 100%; margin-bottom: 2rem;">
                         <p id="clicker_display" style="font-size: 5rem;">0</p>
-                        <button id="clicker" style="padding: 5rem; border-radius: 100%; cursor: pointer;" >Click!</button>
+                        <button id="clicker" style="padding: 5rem; padding-left: 7rem; padding-right: 7rem; border-radius: 50%; cursor: pointer;" >Click!</button>
                         <p id="clicker_display2" style="font-size: 5rem;">0</p>
+                    </div>
+                    <div style="display: flex; flex-direction: column; justify-content: center; width: 100%;">
+                        <button id="clear_storage" style="padding: 1rem 1rem; border-radius: 30%; cursor: pointer; margin: 0 auto 1rem; width: 150px;" >
+                            Clear Storage!
+                        </button>
+                        <button id="add2leaderboard" style="padding: 1rem 1rem; border-radius: 30%; cursor: pointer; margin: 0 auto; width: 150px;" >
+                            Add to Global Leaderboard
+                            <span style="font-style: italic;">(Coming Soon)</span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -25,6 +37,21 @@
         
     </body>
     <script>
+
+        // Get saved clicker count from local storage
+        
+        window.onload = function() {
+            let saved_count = localStorage.getItem('clicker_count');
+            let saved_count2 = localStorage.getItem('clicker_count2');
+            document.getElementById('clicker_display').innerText = saved_count;
+            document.getElementById('clicker_display2').innerText = saved_count2;
+            if(saved_count === null) {
+                document.getElementById('clicker_display').innerText = 0;
+                document.getElementById('clicker_display2').innerText = 0;
+            }
+            // alert('Your clicker count has been loaded from local storage!');
+        }
+        // Event listener for clicker button
         document.getElementById('clicker').addEventListener('click', function() {
             // Add your click event logic here
             let clicker_display = document.getElementById('clicker_display');
@@ -35,6 +62,48 @@
             clicker_count2++;
             clicker_display.innerText = clicker_count;
             clicker_display2.innerText = clicker_count2;
+
+            // Save count to local storage
+            localStorage.setItem('clicker_count', clicker_count);
+            localStorage.setItem('clicker_count2', clicker_count2);
         });
+
+        document.getElementById('clear_storage').addEventListener('click', function() {
+            // Add your clear storage logic here
+            localStorage.removeItem('clicker_count');
+            localStorage.removeItem('clicker_count2');
+            document.getElementById('clicker_display').innerText = 0;
+            document.getElementById('clicker_display2').innerText = 0;
+            alert('Your clicker count has been cleared from local storage!');
+        });
+
+        // Function to handle changes
+        function handleChange(mutationsList) {
+            for (let mutation of mutationsList) {
+                if (mutation.type === 'childList' || mutation.type === 'characterData') {
+                    console.log('A change has been detected in the clicker display!');
+                    // Add your logic here for what to do when a change is detected
+                    if(parseInt(document.getElementById('clicker_display').innerText) === 0) {
+                        return;
+                    } else if(parseInt(document.getElementById('clicker_display').innerText) % 100 === 0 && parseInt(document.getElementById('clicker_display').innerText) === 100) {
+                        alert('You have reached ' + document.getElementById('clicker_display').innerText + ' clicks! Congrats on your first 100 clicks!');
+                    } else if(parseInt(document.getElementById('clicker_display').innerText) % 100 === 0 && parseInt(document.getElementById('clicker_display').innerText) > 150) {
+                        alert('You have reached ' + document.getElementById('clicker_display').innerText + ' clicks! You are now a pro clicker!');
+                    }
+                }
+            }
+        }
+
+        // Select the target node
+        const targetNode = document.getElementById('clicker_display');
+
+        // Create an observer instance linked to the callback function
+        const observer = new MutationObserver(handleChange);
+
+        // Options for the observer (which mutations to observe)
+        const config = { childList: true, characterData: true, subtree: true };
+
+        // Start observing the target node for configured mutations
+        observer.observe(targetNode, config);
     </script>
 </html>

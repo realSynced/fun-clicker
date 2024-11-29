@@ -1,7 +1,23 @@
-.fTitle {
-    font-size: 1.5em;
-    font-weight: bold;
-    color: #000;
-    margin: 0;
-    padding: 0;
+
+#clicker {
+    background-color: rgb(0, 234, 255);
+    scale: scale(1);
+    transition: all 100ms ease-in-out  ;
 }
+
+#clicker:hover {
+    background-color: rgb(112, 193, 255);
+    transition: all 100ms ease-in-out  ;
+}
+
+#clear_storage {
+  background-color: rgb(0, 234, 255);
+  scale: scale(1);
+  transition: all 100ms ease-in-out  ;
+}
+#clear_storage:hover {
+  background-color: rgb(112, 193, 255);
+  scale: 1.1;
+  transition: all 100ms ease-in-out  ;
+}
+
