@@ -1,5 +1,4 @@
 # Fun Clicker
----
 
 ### Welcome to the Fun Clicker 🖱️
 
