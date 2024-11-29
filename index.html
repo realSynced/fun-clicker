@@ -4,42 +4,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Global Clicker</title>
     <link rel="stylesheet" href="main.css">
-</head>
-    <body>
+    <style>
+        :root {
+            --text: #020a0b;
+            --background: #f0fbfc;
+            --primary: #40d2d8;
+            --secondary: #92a5e9;
+            --accent: #6561df;
+        }
 
-        <main style="width: 100%; height: 100vh; display: flex; align-items: center; justify-content: center;">
-            <div class="" style="padding: 2rem; display: flex; flex-direction: column; width: 100%; text-align: center;">
-                <div class="" style="display: flex; flex-direction: column; line-height: 2px; margin-bottom: 4.5rem;">
-                    <h1 class="fTitle" style="font-weight: bold;">Welcome to the Fun Clicker!</h1>
-                    <p>This app was created with <span style="font-weight: bold;">RAW</span> HTML, CSS and JavaScript.</p>
-                    <p>This is a clicking app. Everytime you click, it's saved to your local storage!</p>
-                    <p>Have fun with clicking! Take time and reach the top of the leaderboard. This is a global competition.    </p>
-                    <p>Start by clicking the clicker in the center of the page!</p>
+        body {
+            background-color: var(--background);
+            font-family: Arial, sans-serif;
+            color: var(--text);
+        }
+        .main-container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 2rem;
+        }
+        .button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 30%;
+            cursor: pointer;
+            padding: 1rem;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: var(--secondary);
+        }
+        .fTitle {
+            color: var(--accent);
+        }
+        #clicker {
+            border-radius: 50%;
+        }
+        #clicker_display, #clicker_display2 {
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+    <main class="main-container" style="display: flex; align-items: center; justify-content: center;">
+        <div class="" style="padding: 2rem; display: flex; flex-direction: column; width: 100%; text-align: center;">
+            <div class="" style="display: flex; flex-direction: column; line-height: 2px; margin-bottom: 4.5rem;">
+                <h1 class="fTitle" style="font-weight: bold;">Welcome to the Fun Clicker!</h1>
+                <p>This app was created with <span style="font-weight: bold;">RAW</span> HTML, CSS and JavaScript (a real pain).</p>
+                <p>This is a clicking app. Everytime you click, it's saved to your local storage!</p>
+                <p>Have fun with clicking! Take time and reach the top of the leaderboard. This is a global competition.</p>
+                <p>Start by clicking the clicker in the center of the page!</p>
+            </div>
+            <div class="" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+                <div style="display: flex; justify-content: space-between; width: 100%; margin-bottom: 2rem;">
+                    <p id="clicker_display" style="font-size: 5rem;">0</p>
+                    <button id="clicker" class="button" style="padding: 3rem 3rem; width: 200px; font-size: 2rem; text-align: center;">Click!</button>
+                    <p id="clicker_display2" style="font-size: 5rem;">0</p>
                 </div>
-                <div class="" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center    ;">
-                    <div style="display: flex; justify-content: space-between; width: 100%; margin-bottom: 2rem;">
-                        <p id="clicker_display" style="font-size: 5rem;">0</p>
-                        <button id="clicker" style="padding: 5rem; padding-left: 7rem; padding-right: 7rem; border-radius: 50%; cursor: pointer;" >Click!</button>
-                        <p id="clicker_display2" style="font-size: 5rem;">0</p>
-                    </div>
-                    <div style="display: flex; flex-direction: column; justify-content: center; width: 100%;">
-                        <button id="clear_storage" style="padding: 1rem 1rem; border-radius: 30%; cursor: pointer; margin: 0 auto 1rem; width: 150px;" >
-                            Clear Storage!
-                        </button>
-                        <button id="add2leaderboard" style="padding: 1rem 1rem; border-radius: 30%; cursor: pointer; margin: 0 auto; width: 150px;" >
-                            Add to Global Leaderboard
-                            <span style="font-style: italic;">(Coming Soon)</span>
-                        </button>
-                    </div>
+                <div style="display: flex; flex-direction: column; justify-content: center; width: 100%;">
+                    <button id="clear_storage" class="button" style="margin: 0 auto 1rem; width: 150px;">
+                        Clear Storage!
+                    </button>
+                    <button id="add2leaderboard" class="button" style="margin: 0 auto; width: 150px;">
+                        Add to Global Leaderboard
+                        <span style="font-style: italic;">(Coming Soon)</span>
+                    </button>
                 </div>
             </div>
-        </main>
-        
-    </body>
+        </div>
+    </main>
+    
     <script>
-
         // Get saved clicker count from local storage
-        
         window.onload = function() {
             let saved_count = localStorage.getItem('clicker_count');
             let saved_count2 = localStorage.getItem('clicker_count2');
@@ -106,4 +144,5 @@
         // Start observing the target node for configured mutations
         observer.observe(targetNode, config);
     </script>
+</body>
 </html>
